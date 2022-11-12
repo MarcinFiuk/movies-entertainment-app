@@ -1,3 +1,4 @@
+import Recommended from '../components/Recommended';
 import SearchBar from '../components/searchBar';
 import Trendy from '../components/Trendy';
 
@@ -6,6 +7,7 @@ const Home = () => {
         <div>
             <SearchBar />
             <Trendy />
+            <Recommended />
         </div>
     );
 };
