@@ -16,6 +16,7 @@ export const GlobalStyle = createGlobalStyle`
 --font-large:1.125rem;
 --font-base:1rem;
 --font-small:0.8125rem;
+--font-xs:0.75rem;
 
 --padding-inline-phone:16px;
 --padding-inline-tablet:25px;

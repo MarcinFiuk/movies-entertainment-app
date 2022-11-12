@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import LikeButton from './LikeButton';
+import MovieDetails from './MovieDetails';
 
 const Trendy = () => {
     return (
@@ -8,7 +9,9 @@ const Trendy = () => {
             <LikeButtonWrapper>
                 <LikeButton isBookmarked={false} />
             </LikeButtonWrapper>
-            a
+            <MovieDetailsWrapper>
+                <MovieDetails size='big' category='Movie' />
+            </MovieDetailsWrapper>
         </Wrapper>
     );
 };
@@ -36,4 +39,10 @@ const LikeButtonWrapper = styled.div`
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
+`;
+
+const MovieDetailsWrapper = styled.div`
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
 `;
