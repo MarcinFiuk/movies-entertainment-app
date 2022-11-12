@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
+import { ReactComponent as SearchIcon } from './../assets/icon-search.svg';
+
 const SearchBar = () => {
     return (
         <Wrapper>
-            <button>
-                <Image src='/assets/icon-search.svg' />
-            </button>
+            <ButtonStyled>
+                <SearchIcon />
+            </ButtonStyled>
             <Input type='text' placeholder='Search for movies or TV series' />
         </Wrapper>
     );
@@ -22,9 +24,10 @@ const Wrapper = styled.div`
     }
 `;
 
-const Image = styled.img`
+const ButtonStyled = styled.button`
     width: 25px;
     height: 25px;
+    padding: 0;
 
     @media (min-width: 48rem) {
         width: 32px;
