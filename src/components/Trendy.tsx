@@ -2,15 +2,18 @@ import styled from 'styled-components';
 
 import LikeButton from './LikeButton';
 import MovieDetails from './MovieDetails';
+import { DataType } from './../App.types';
 
-const Trendy = () => {
+type TrendyProps = { movies: DataType };
+
+const Trendy = ({ movies }: TrendyProps) => {
     return (
         <Wrapper>
             <LikeButtonWrapper>
                 <LikeButton isBookmarked={false} />
             </LikeButtonWrapper>
             <MovieDetailsWrapper>
-                <MovieDetails size='big' category='Movie' />
+                {/* <MovieDetails size='big' category='Movie'  /> */}
             </MovieDetailsWrapper>
         </Wrapper>
     );

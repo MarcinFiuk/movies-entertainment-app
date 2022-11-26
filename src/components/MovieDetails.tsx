@@ -5,23 +5,32 @@ import { ReactComponent as TVIcon } from './../assets/icon-category-tv.svg';
 
 type MovieDetailsProps = {
     size: 'big' | 'small';
-    category: 'Movie' | 'TV Series';
+    category: string;
+    year: number;
+    title: string;
+    rating: string;
 };
 type SizeProps = Pick<MovieDetailsProps, 'size'>;
 
-const MovieDetails = ({ size, category }: MovieDetailsProps) => {
+const MovieDetails = ({
+    size,
+    category,
+    year,
+    title,
+    rating,
+}: MovieDetailsProps) => {
     return (
         <div>
             <DetailsWrapper size={size}>
-                <p>2019</p>
+                <p>{year}</p>
                 <Dot />
                 {category === 'Movie' ? <MovieIcon /> : <TVIcon />}
-                <p>Movie</p>
+                <p>{category}</p>
                 <Dot />
-                <p>PG</p>
+                <p>{rating}</p>
             </DetailsWrapper>
             <div>
-                <Title size={size}>Bottom Gear</Title>
+                <Title size={size}>{title}</Title>
             </div>
         </div>
     );

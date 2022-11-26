@@ -1,22 +1,62 @@
 import styled from 'styled-components';
 import LikeButton from './LikeButton';
 import MovieDetails from './MovieDetails';
+import { DataType } from '../App.types';
+import { url } from 'inspector';
 
-const Recommended = () => {
-    return (
-        <Wrapper>
-            <LikeButtonWrapper>
-                <LikeButton isBookmarked={false} />
-            </LikeButtonWrapper>
-            <PictureSection />
-            <MovieDetails size='small' category='Movie' />
-        </Wrapper>
-    );
+type RecommendedTypes = { movies: DataType };
+
+type PictureTypes = {
+    picture: {
+        small: string;
+        medium: string;
+        large: string;
+    };
+};
+
+const Recommended = ({ movies }: RecommendedTypes) => {
+    const moviesList = movies.map((movie) => {
+        return (
+            <IndividualElementWrapper>
+                <LikeButtonWrapper>
+                    <LikeButton isBookmarked={movie.isBookmarked} />
+                </LikeButtonWrapper>
+                <PictureSection picture={movie.thumbnail.regular} />
+                <MovieDetails
+                    size='small'
+                    category={movie.category}
+                    year={movie.year}
+                    title={movie.title}
+                    rating={movie.rating}
+                />
+            </IndividualElementWrapper>
+        );
+    });
+
+    return <GlobalWrapper>{moviesList}</GlobalWrapper>;
 };
 
 export default Recommended;
 
-const Wrapper = styled.div`
+const GlobalWrapper = styled.div`
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+
+    @media (min-width: 48rem) {
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 1.5rem;
+        column-gap: 1.875rem;
+    }
+
+    @media (min-width: 64rem) {
+        grid-template-columns: repeat(4, 1fr);
+        row-gap: 2rem;
+        column-gap: 2.5rem;
+    }
+`;
+
+const IndividualElementWrapper = styled.div`
     position: relative;
 `;
 
@@ -36,7 +76,7 @@ const PictureSection = styled.div`
     aspect-ratio: 16/11;
     border-radius: 0.5em;
     background-color: hsl(var(--semiDarkBlue));
-    background-image: url('./assets/thumbnails/112/regular/small.jpg');
+    background-image: ${({ picture }: PictureTypes) => `url(${picture.small})`};
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

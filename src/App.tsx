@@ -1,14 +1,18 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
+import movies from './data.json';
 import Header from './components/Header';
 import Home from './pages/Home';
 
 function App() {
+    const [data, setData] = useState(movies);
+
     return (
         <Wrapper>
             <Header />
             <main>
-                <Home />
+                <Home data={data} />
             </main>
         </Wrapper>
     );
