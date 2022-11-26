@@ -2,9 +2,8 @@ import styled from 'styled-components';
 import LikeButton from './LikeButton';
 import MovieDetails from './MovieDetails';
 import { DataType } from '../App.types';
-import { url } from 'inspector';
 
-type RecommendedTypes = { movies: DataType };
+type RecommendedTypesProps = { movies: DataType };
 
 type PictureTypes = {
     picture: {
@@ -14,20 +13,23 @@ type PictureTypes = {
     };
 };
 
-const Recommended = ({ movies }: RecommendedTypes) => {
+const Recommended = ({ movies }: RecommendedTypesProps) => {
     const moviesList = movies.map((movie) => {
+        const { id, isBookmarked, thumbnail, category, year, title, rating } =
+            movie;
+        const { regular } = thumbnail;
         return (
-            <IndividualElementWrapper>
+            <IndividualElementWrapper key={id}>
                 <LikeButtonWrapper>
-                    <LikeButton isBookmarked={movie.isBookmarked} />
+                    <LikeButton isBookmarked={isBookmarked} />
                 </LikeButtonWrapper>
-                <PictureSection picture={movie.thumbnail.regular} />
+                <PictureSection picture={regular} />
                 <MovieDetails
                     size='small'
-                    category={movie.category}
-                    year={movie.year}
-                    title={movie.title}
-                    rating={movie.rating}
+                    category={category}
+                    year={year}
+                    title={title}
+                    rating={rating}
                 />
             </IndividualElementWrapper>
         );
@@ -81,4 +83,14 @@ const PictureSection = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     margin-bottom: 0.5rem;
+
+    @media (min-width: 48rem) {
+        background-image: ${({ picture }: PictureTypes) =>
+            `url(${picture.medium})`};
+    }
+
+    @media (min-width: 64rem) {
+        background-image: ${({ picture }: PictureTypes) =>
+            `url(${picture.large})`};
+    }
 `;

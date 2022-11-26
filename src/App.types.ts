@@ -1,4 +1,5 @@
 export type DataType = {
+    id: number;
     title: string;
     thumbnail: {
         trending?: {
