@@ -14,7 +14,7 @@ const Home = ({ data }: HomeProps) => {
     return (
         <div>
             <SearchBar />
-            {/* <Trendy movies={trendyMovies} /> */}
+            <Trendy movies={trendyMovies} />
             <Recommended movies={recommendedMovies} />
         </div>
     );

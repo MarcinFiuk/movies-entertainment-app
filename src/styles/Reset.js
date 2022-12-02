@@ -12,7 +12,7 @@ export const Reset = createGlobalStyle`
   margin: 0;
 }
 html, body {
-  height: 100%;
+  min-height: 100%;
 }
 body {
   line-height: 1.5;

@@ -14,6 +14,7 @@ type PictureTypes = {
 };
 
 const Recommended = ({ movies }: RecommendedTypesProps) => {
+    console.log(window.innerWidth);
     const moviesList = movies.map((movie) => {
         const { id, isBookmarked, thumbnail, category, year, title, rating } =
             movie;
@@ -41,6 +42,7 @@ const Recommended = ({ movies }: RecommendedTypesProps) => {
 export default Recommended;
 
 const GlobalWrapper = styled.div`
+    width: calc(100vw - (2 * var(--body-inline-padding)));
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
@@ -55,6 +57,8 @@ const GlobalWrapper = styled.div`
         grid-template-columns: repeat(4, 1fr);
         row-gap: 2rem;
         column-gap: 2.5rem;
+        width: 86vw;
+        max-width: 1240px;
     }
 `;
 

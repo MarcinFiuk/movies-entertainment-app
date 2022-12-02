@@ -18,9 +18,9 @@ export const GlobalStyle = createGlobalStyle`
 --font-small:0.875rem;
 --font-xs:0.75rem;
 
---padding-inline-phone:16px;
---padding-inline-tablet:25px;
---padding-inline-desktop:32px;
+--body-inline-padding:16px;
+/* --padding-inline-tablet:25px;
+--padding-inline-desktop:32px; */
 }
 
 body{
@@ -30,14 +30,15 @@ body{
     background-color:hsl(var(--darkBlue));
     color: hsl(var(--pureWhite));
     overflow-x:hidden;
-    padding:var(--padding-inline-phone);
+    padding:var(--body-inline-padding);
 
     @media(min-width: 48rem){
-        padding-inline:var(--padding-inline-tablet);
+        --body-inline-padding:25px
+
     };
 
     @media(min-width: 64rem){
-    padding-inline:var(--padding-inline-desktop);
+        --body-inline-padding:32px
 }
 }
 
