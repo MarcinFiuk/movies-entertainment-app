@@ -5,6 +5,7 @@ import Carousel from 'nuka-carousel';
 import LikeButton from './LikeButton';
 import MovieDetails from './MovieDetails';
 import { DataType } from './../App.types';
+import useMatchMedia from '../hooks/useMatchMedia';
 
 type TrendyTypesProps = { movies: DataType };
 
@@ -21,7 +22,7 @@ const config = {
 };
 
 const Trendy = ({ movies }: TrendyTypesProps) => {
-    const [isMatch, setIsMatch] = useState(false);
+    const isLarge = useMatchMedia('(min-width:1024px)');
 
     const moviesList = movies.map((movie) => {
         const { id, category, year, title, rating, isBookmarked, thumbnail } =
@@ -47,23 +48,31 @@ const Trendy = ({ movies }: TrendyTypesProps) => {
     });
 
     return (
-        <CarouselStyled
-            wrapAround={true}
-            slidesToShow={isMatch ? 2.5 : 1.35}
-            defaultControlsConfig={config}
-            renderBottomCenterControls={() => null}
-        >
-            {moviesList}
-        </CarouselStyled>
+        <GlobalWrapper>
+            <h2>Trending</h2>
+            <Carousel
+                wrapAround={true}
+                slidesToShow={isLarge ? 2.5 : 1.35}
+                defaultControlsConfig={config}
+                renderBottomCenterControls={() => null}
+            >
+                {moviesList}
+            </Carousel>
+        </GlobalWrapper>
     );
 };
 
 export default Trendy;
 
-const CarouselStyled = styled(Carousel)`
-    .slider-container {
-        border: 2px solid red;
-        margin-right: 40px;
+const GlobalWrapper = styled.div`
+    margin-right: calc(var(--body-inline-padding) * -1);
+    margin-top: 1.5rem;
+
+    @media (min-width: 48rem) {
+        margin-top: 2rem;
+    }
+
+    h2 {
     }
 `;
 

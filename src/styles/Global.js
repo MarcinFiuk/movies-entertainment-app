@@ -19,8 +19,6 @@ export const GlobalStyle = createGlobalStyle`
 --font-xs:0.75rem;
 
 --body-inline-padding:16px;
-/* --padding-inline-tablet:25px;
---padding-inline-desktop:32px; */
 }
 
 body{

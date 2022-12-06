@@ -42,23 +42,25 @@ const Recommended = ({ movies }: RecommendedTypesProps) => {
 export default Recommended;
 
 const GlobalWrapper = styled.div`
-    width: calc(100vw - (2 * var(--body-inline-padding)));
+    /* width: calc(100% - (2 * var(--body-inline-padding))); */
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+    margin-top: 1.5rem;
 
     @media (min-width: 48rem) {
         grid-template-columns: repeat(3, 1fr);
         row-gap: 1.5rem;
         column-gap: 1.875rem;
+        margin-top: 2.5rem;
     }
 
     @media (min-width: 64rem) {
         grid-template-columns: repeat(4, 1fr);
         row-gap: 2rem;
         column-gap: 2.5rem;
-        width: 86vw;
-        max-width: 1240px;
+        /* width: 86%;
+        max-width: 1240px; */
     }
 `;
 
