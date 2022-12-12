@@ -4,17 +4,18 @@ import styled from 'styled-components';
 import movies from './data.json';
 import Header from './components/Header';
 import Home from './pages/Home';
+import { DataProvider } from './context/dataContext';
 
 function App() {
-    const [data, setData] = useState(movies);
-
     return (
-        <Wrapper>
-            <Header />
-            <main>
-                <Home data={data} />
-            </main>
-        </Wrapper>
+        <DataProvider>
+            <Wrapper>
+                <Header />
+                <main>
+                    <Home />
+                </main>
+            </Wrapper>
+        </DataProvider>
     );
 }
 

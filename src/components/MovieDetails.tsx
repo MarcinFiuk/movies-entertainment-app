@@ -45,7 +45,7 @@ const DetailsWrapper = styled.div`
     margin-bottom: 4px;
 
     p {
-        font-size: var(--font-xs);
+        font-size: var(--fs-12);
         font-weight: var(--fontWeight-300);
         color: hsl(var(--pureWhite) / 0.75);
     }
@@ -57,7 +57,7 @@ const DetailsWrapper = styled.div`
                 line-height: 15px;
 
                 @media (min-width: 48rem) {
-                    font-size: var(--font-base);
+                    font-size: var(--fs-16);
                     line-height: 19px;
                 }
             }
@@ -69,7 +69,7 @@ const DetailsWrapper = styled.div`
                 line-height: 14px;
 
                 @media (min-width: 48rem) {
-                    font-size: var(--font-small);
+                    font-size: var(--fs-14);
                     line-height: 16px;
                 }
             }
@@ -91,22 +91,22 @@ const Title = styled.p`
     ${({ size }: SizeProps) =>
         size === 'big' &&
         css`
-            font-size: var(--font-base);
+            font-size: var(--fs-16);
             line-height: 19px;
 
             @media (min-width: 48rem) {
-                font-size: var(--font-xl);
+                font-size: var(--fs-24);
                 line-height: 30px;
             }
         `}
     ${({ size }: SizeProps) =>
         size === 'small' &&
         css`
-            font-size: var(--font-small);
+            font-size: var(--fs-14);
             line-height: 17px;
 
             @media (min-width: 48rem) {
-                font-size: var(--font-large);
+                font-size: var(--fs-18);
                 line-height: 22px;
             }
         `}

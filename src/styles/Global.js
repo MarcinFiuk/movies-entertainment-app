@@ -11,12 +11,13 @@ export const GlobalStyle = createGlobalStyle`
 --semiDarkBlue:223  36%  13%;
 --greyishBlue:223  23%  46%;
 
---font-2xl:2rem;
---font-xl:1.5rem;
---font-large:1.125rem;
---font-base:1rem;
---font-small:0.875rem;
---font-xs:0.75rem;
+--fs-32:2rem;
+--fs-24:1.5rem;
+--fs-20:1.25rem;
+--fs-18:1.125rem;
+--fs-16:1rem;
+--fs-14:0.875rem;
+--fs-12:0.75rem;
 
 --body-inline-padding:16px;
 }
@@ -43,6 +44,18 @@ body{
 button{
     background-color:transparent;
     border:none;
+}
+
+h2{
+    font-weight: var(--fontWeight-300);
+    font-size: var(--fs-20);
+    line-height:1.25;
+    letter-spacing: -0.3px;
+
+    @media (min-width: 48rem) {
+        font-size: var(--fs-32);
+        letter-spacing: -0.5px;
+    }
 }
 `;
 

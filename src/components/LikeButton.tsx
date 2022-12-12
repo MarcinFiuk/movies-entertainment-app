@@ -1,13 +1,16 @@
+import { ComponentPropsWithoutRef } from 'react';
 import styled from 'styled-components';
 
 import { ReactComponent as BookmarkEmpty } from './../assets/icon-bookmark-empty.svg';
 
 import { ReactComponent as BookmarkFull } from './../assets/icon-bookmark-full.svg';
-type LikeButtonTypes = { isBookmarked: boolean };
+type LikeButtonProps = ComponentPropsWithoutRef<'button'> & {
+    isBookmarked: boolean;
+};
 
-const LikeButton = ({ isBookmarked }: LikeButtonTypes) => {
+const LikeButton = ({ isBookmarked, onClick }: LikeButtonProps) => {
     return (
-        <StyledButton>
+        <StyledButton onClick={onClick}>
             {isBookmarked ? <BookmarkFull /> : <BookmarkEmpty />}
         </StyledButton>
     );

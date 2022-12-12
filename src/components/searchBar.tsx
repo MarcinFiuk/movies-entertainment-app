@@ -37,7 +37,7 @@ const ButtonStyled = styled.button`
 
 const Input = styled.input`
     width: 100%;
-    font-size: var(--font-base);
+    font-size: var(--fs-16);
     line-height: 1.25rem;
     background-color: transparent;
     color: hsl(var(--pureWhite));
@@ -50,7 +50,7 @@ const Input = styled.input`
     }
 
     @media (min-width: 48rem) {
-        font-size: var(--font-xl);
+        font-size: var(--fs-24);
         line-height: 1.25rem;
     }
 `;

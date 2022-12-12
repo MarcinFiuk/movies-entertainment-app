@@ -4,10 +4,8 @@ import Carousel from 'nuka-carousel';
 
 import LikeButton from './LikeButton';
 import MovieDetails from './MovieDetails';
-import { DataType } from './../App.types';
 import useMatchMedia from '../hooks/useMatchMedia';
-
-type TrendyTypesProps = { movies: DataType };
+import { useDataProvider } from './../context/dataContext';
 
 type PictureTypes = {
     picture: {
@@ -21,10 +19,14 @@ const config = {
     prevButtonText: '<',
 };
 
-const Trendy = ({ movies }: TrendyTypesProps) => {
+const Trendy = () => {
+    const { data, updateIsBookmarked } = useDataProvider();
     const isLarge = useMatchMedia('(min-width:1024px)');
 
-    const moviesList = movies.map((movie) => {
+    const moviesList = data.map((movie) => {
+        if (!movie.thumbnail.trending) {
+            return null;
+        }
         const { id, category, year, title, rating, isBookmarked, thumbnail } =
             movie;
         const { trending } = thumbnail;
@@ -32,7 +34,10 @@ const Trendy = ({ movies }: TrendyTypesProps) => {
         return (
             <ElementWrapper key={id} picture={trending!}>
                 <LikeButtonWrapper>
-                    <LikeButton isBookmarked={isBookmarked} />
+                    <LikeButton
+                        isBookmarked={isBookmarked}
+                        onClick={() => updateIsBookmarked(id)}
+                    />
                 </LikeButtonWrapper>
                 <MovieDetailsWrapper>
                     <MovieDetails
@@ -64,15 +69,12 @@ const Trendy = ({ movies }: TrendyTypesProps) => {
 
 export default Trendy;
 
-const GlobalWrapper = styled.div`
+const GlobalWrapper = styled.section`
     margin-right: calc(var(--body-inline-padding) * -1);
     margin-top: 1.5rem;
 
     @media (min-width: 48rem) {
         margin-top: 2rem;
-    }
-
-    h2 {
     }
 `;
 

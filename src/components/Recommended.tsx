@@ -1,9 +1,8 @@
 import styled from 'styled-components';
+
 import LikeButton from './LikeButton';
 import MovieDetails from './MovieDetails';
-import { DataType } from '../App.types';
-
-type RecommendedTypesProps = { movies: DataType };
+import { useDataProvider } from './../context/dataContext';
 
 type PictureTypes = {
     picture: {
@@ -13,16 +12,20 @@ type PictureTypes = {
     };
 };
 
-const Recommended = ({ movies }: RecommendedTypesProps) => {
-    console.log(window.innerWidth);
-    const moviesList = movies.map((movie) => {
+const Recommended = () => {
+    const { data, updateIsBookmarked } = useDataProvider();
+
+    const moviesList = data.map((movie) => {
         const { id, isBookmarked, thumbnail, category, year, title, rating } =
             movie;
         const { regular } = thumbnail;
         return (
             <IndividualElementWrapper key={id}>
                 <LikeButtonWrapper>
-                    <LikeButton isBookmarked={isBookmarked} />
+                    <LikeButton
+                        isBookmarked={isBookmarked}
+                        onClick={() => updateIsBookmarked(id)}
+                    />
                 </LikeButtonWrapper>
                 <PictureSection picture={regular} />
                 <MovieDetails
@@ -36,31 +39,39 @@ const Recommended = ({ movies }: RecommendedTypesProps) => {
         );
     });
 
-    return <GlobalWrapper>{moviesList}</GlobalWrapper>;
+    return (
+        <GlobalWrapper>
+            <h2>Recommended for you</h2>
+            <MoviesWrapper>{moviesList}</MoviesWrapper>
+        </GlobalWrapper>
+    );
 };
 
 export default Recommended;
 
-const GlobalWrapper = styled.div`
-    /* width: calc(100% - (2 * var(--body-inline-padding))); */
+const GlobalWrapper = styled.section`
+    margin-top: 1.5rem;
+
+    @media (min-width: 48rem) {
+        margin-top: 2.5rem;
+    }
+`;
+
+const MoviesWrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-    margin-top: 1.5rem;
 
     @media (min-width: 48rem) {
         grid-template-columns: repeat(3, 1fr);
         row-gap: 1.5rem;
         column-gap: 1.875rem;
-        margin-top: 2.5rem;
     }
 
     @media (min-width: 64rem) {
         grid-template-columns: repeat(4, 1fr);
         row-gap: 2rem;
         column-gap: 2.5rem;
-        /* width: 86%;
-        max-width: 1240px; */
     }
 `;
 
