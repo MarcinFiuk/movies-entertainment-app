@@ -6,8 +6,10 @@ type ContextProviderProps = {
     children: ReactNode;
 };
 
+export type Data = typeof movies;
+
 type Context = {
-    data: typeof movies;
+    data: Data;
     updateIsBookmarked: (id: number) => void;
 };
 

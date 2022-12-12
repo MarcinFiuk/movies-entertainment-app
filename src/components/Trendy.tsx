@@ -5,7 +5,11 @@ import Carousel from 'nuka-carousel';
 import LikeButton from './LikeButton';
 import MovieDetails from './MovieDetails';
 import useMatchMedia from '../hooks/useMatchMedia';
-import { useDataProvider } from './../context/dataContext';
+import { useDataProvider, Data } from './../context/dataContext';
+
+type TrendyProps = {
+    movies: Data;
+};
 
 type PictureTypes = {
     picture: {
@@ -19,11 +23,11 @@ const config = {
     prevButtonText: '<',
 };
 
-const Trendy = () => {
-    const { data, updateIsBookmarked } = useDataProvider();
+const Trendy = ({ movies }: TrendyProps) => {
+    const { updateIsBookmarked } = useDataProvider();
     const isLarge = useMatchMedia('(min-width:1024px)');
 
-    const moviesList = data.map((movie) => {
+    const moviesList = movies.map((movie) => {
         if (!movie.thumbnail.trending) {
             return null;
         }
@@ -55,14 +59,16 @@ const Trendy = () => {
     return (
         <GlobalWrapper>
             <h2>Trending</h2>
-            <Carousel
-                wrapAround={true}
-                slidesToShow={isLarge ? 2.5 : 1.35}
-                defaultControlsConfig={config}
-                renderBottomCenterControls={() => null}
-            >
-                {moviesList}
-            </Carousel>
+            <CarouselWrapper>
+                <Carousel
+                    wrapAround={true}
+                    slidesToShow={isLarge ? 2.5 : 1.35}
+                    defaultControlsConfig={config}
+                    renderBottomCenterControls={() => null}
+                >
+                    {moviesList}
+                </Carousel>
+            </CarouselWrapper>
         </GlobalWrapper>
     );
 };
@@ -75,6 +81,14 @@ const GlobalWrapper = styled.section`
 
     @media (min-width: 48rem) {
         margin-top: 2rem;
+    }
+`;
+
+const CarouselWrapper = styled.div`
+    margin-top: 1rem;
+
+    @media (min-width: 48rem) {
+        margin-top: 1.5rem;
     }
 `;
 
