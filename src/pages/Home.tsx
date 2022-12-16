@@ -1,5 +1,4 @@
 import Recommended from '../components/Recommended';
-import SearchBar from '../components/searchBar';
 import Trendy from '../components/Trendy';
 import { useDataProvider } from './../context/dataContext';
 
@@ -11,7 +10,6 @@ const Home = () => {
 
     return (
         <>
-            <SearchBar />
             <Trendy movies={trendingMovies} />
             <Recommended movies={recommendedMovies} />
         </>

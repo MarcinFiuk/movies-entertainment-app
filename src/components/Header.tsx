@@ -80,6 +80,55 @@ const Wrapper = styled.div`
     img {
         width: 24px;
         height: 24px;
+        border: 1px solid hsl(var(--pureWhite));
+        border-radius: 100%;
+    }
+
+    @media (min-width: 48rem) {
+        margin-inline: 0;
+        margin-top: 1.5rem;
+        padding-block: 1.25rem;
+        padding-inline: 24px;
+        border-radius: 10px;
+
+        h1 {
+            width: 32px;
+            height: 25px;
+        }
+
+        ul > li {
+            width: 20px;
+            height: 20px;
+        }
+
+        img {
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    @media (min-width: 64rem) {
+        flex-direction: column;
+        height: 100vh;
+        max-height: 960px;
+        min-height: 400px;
+        justify-content: center;
+        align-items: center;
+        padding-block: 2rem;
+        border-radius: 20px;
+        margin-top: 2rem;
+
+        div > ul {
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 72px;
+        }
+
+        img {
+            width: 40px;
+            height: 40px;
+            margin-top: auto;
+        }
     }
 `;
 

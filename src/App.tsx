@@ -7,6 +7,7 @@ import { DataProvider } from './context/dataContext';
 import Movies from './pages/Movies';
 import TvSeries from './pages/TvSeries';
 import Bookmarked from './pages/Bookmarked';
+import SearchBar from './components/searchBar';
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
             <Wrapper>
                 <Header />
                 <main>
+                    <SearchBar />
                     <Routes>
                         <Route path='/' element={<Home />} />
                         <Route path='/movies' element={<Movies />} />
@@ -40,7 +42,7 @@ const Wrapper = styled.div`
     }
 
     @media (min-width: 64rem) {
-        grid-template-columns: 96px, 1fr;
+        grid-template-columns: 96px 1fr;
         grid-template-rows: auto;
         gap: 32px;
     }
