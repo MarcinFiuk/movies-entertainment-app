@@ -5,13 +5,13 @@ import { useDataProvider } from './../context/dataContext';
 const Home = () => {
     const { data } = useDataProvider();
 
-    const trendingMovies = data.filter((movie) => movie.isTrending);
-    const recommendedMovies = data.filter((movie) => !movie.isTrending);
+    const trending = data.filter((item) => item.isTrending);
+    const recommended = data.filter((item) => !item.isTrending);
 
     return (
         <>
-            <Trendy movies={trendingMovies} />
-            <Recommended movies={recommendedMovies} />
+            <Trendy movies={trending} />
+            <Recommended movies={recommended} title='Recommended for you' />
         </>
     );
 };
