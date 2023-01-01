@@ -6,6 +6,7 @@ import { useDataProvider, Data } from './../context/dataContext';
 
 type RecommendedProps = {
     movies: Data;
+    title: string;
 };
 
 type PictureTypes = {
@@ -16,7 +17,7 @@ type PictureTypes = {
     };
 };
 
-const Recommended = ({ movies }: RecommendedProps) => {
+const Recommended = ({ movies, title }: RecommendedProps) => {
     const { updateIsBookmarked } = useDataProvider();
 
     const moviesList = movies.map((movie) => {
@@ -45,7 +46,7 @@ const Recommended = ({ movies }: RecommendedProps) => {
 
     return (
         <GlobalWrapper>
-            <h2>Recommended for you</h2>
+            <h2>{title}</h2>
             <MoviesWrapper>{moviesList}</MoviesWrapper>
         </GlobalWrapper>
     );

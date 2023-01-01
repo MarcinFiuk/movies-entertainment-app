@@ -29,7 +29,7 @@ body{
     background-color:hsl(var(--darkBlue));
     color: hsl(var(--pureWhite));
     overflow-x:hidden;
-    padding:var(--body-inline-padding);
+    padding-inline:var(--body-inline-padding);
 
     @media(min-width: 48rem){
         --body-inline-padding:25px
