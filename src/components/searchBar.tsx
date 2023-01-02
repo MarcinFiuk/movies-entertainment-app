@@ -1,14 +1,26 @@
 import styled from 'styled-components';
 
+import { useDataProvider } from './../context/dataContext';
 import { ReactComponent as SearchIcon } from './../assets/icon-search.svg';
 
 const SearchBar = () => {
+    const { getSearchString } = useDataProvider();
+
+    const setSearchString = (e: React.ChangeEvent<HTMLInputElement>) => {
+        getSearchString(e.target.value);
+    };
+
     return (
         <Wrapper>
             <ButtonStyled>
                 <SearchIcon />
             </ButtonStyled>
-            <Input type='text' placeholder='Search for movies or TV series' />
+            <Input
+                type='text'
+                placeholder='Search for movies or TV series'
+                name='search'
+                onChange={setSearchString}
+            />
         </Wrapper>
     );
 };

@@ -109,7 +109,7 @@ const Wrapper = styled.div`
 
     @media (min-width: 64rem) {
         flex-direction: column;
-        height: 100vh;
+        height: calc(100vh - 2rem);
         max-height: 960px;
         min-height: 400px;
         justify-content: center;
