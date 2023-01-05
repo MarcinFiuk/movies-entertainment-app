@@ -1,7 +1,12 @@
-import { createContext, useState, useContext, ReactNode } from 'react';
+import {
+    createContext,
+    useState,
+    useContext,
+    ReactNode,
+    useCallback,
+} from 'react';
 
 import movies from './../data.json';
-import { useDebounce } from './../hooks/useDebounce';
 
 type ContextProviderProps = {
     children: ReactNode;
@@ -19,7 +24,6 @@ const DataContext = createContext<Context | undefined>(undefined);
 
 const DataProvider = ({ children }: ContextProviderProps) => {
     const [data, setData] = useState(movies);
-    const [search, setSearch] = useDebounce('', 500);
 
     const updateIsBookmarked = (id: number) => {
         const index = data.findIndex((movie) => movie.id === id);
@@ -31,9 +35,13 @@ const DataProvider = ({ children }: ContextProviderProps) => {
         setData(moviesCopy);
     };
 
-    const getSearchString = (searchString: string) => {
-        setSearch(searchString);
-    };
+    const getSearchString = useCallback((searchString: string) => {
+        const newData = data.filter((movie) =>
+            movie.title.toLowerCase().includes(searchString.toLowerCase())
+        );
+
+        setData(newData);
+    }, []);
 
     const value = { data, updateIsBookmarked, getSearchString };
 

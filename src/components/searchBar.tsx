@@ -2,13 +2,20 @@ import styled from 'styled-components';
 
 import { useDataProvider } from './../context/dataContext';
 import { ReactComponent as SearchIcon } from './../assets/icon-search.svg';
+import { useDebounce } from '../hooks/useDebounce';
+import { useEffect } from 'react';
 
 const SearchBar = () => {
     const { getSearchString } = useDataProvider();
+    const [search, setSearch] = useDebounce('', 500);
 
     const setSearchString = (e: React.ChangeEvent<HTMLInputElement>) => {
-        getSearchString(e.target.value);
+        setSearch(e.target.value);
     };
+
+    useEffect(() => {
+        getSearchString(search);
+    }, [search, getSearchString]);
 
     return (
         <Wrapper>
