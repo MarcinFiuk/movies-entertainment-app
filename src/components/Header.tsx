@@ -17,7 +17,7 @@ const Header = () => {
                         <Logo />
                     </Link>
                 </h1>
-                <div>
+                <nav>
                     <ul>
                         <li>
                             <NavLinkStyled to='/'>
@@ -40,7 +40,7 @@ const Header = () => {
                             </NavLinkStyled>
                         </li>
                     </ul>
-                </div>
+                </nav>
                 <img src={avatar} alt='avatar' />
             </Wrapper>
         </header>
@@ -63,7 +63,7 @@ const Wrapper = styled.div`
         height: 20px;
     }
 
-    div > ul {
+    nav > ul {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -118,7 +118,7 @@ const Wrapper = styled.div`
         border-radius: 20px;
         margin-top: 2rem;
 
-        div > ul {
+        nav > ul {
             flex-wrap: wrap;
             gap: 40px;
             margin-top: 72px;

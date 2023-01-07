@@ -29,11 +29,15 @@ const DataProvider = ({ children }: ContextProviderProps) => {
     const [searchString, setSearchString] = useState('');
 
     useEffect(() => {
-        const newData = movies.filter((movie) =>
-            movie.title.toLowerCase().includes(searchString.toLowerCase())
-        );
+        if (searchString !== '') {
+            const newData = movies.filter((movie) =>
+                movie.title.toLowerCase().includes(searchString.toLowerCase())
+            );
 
-        setData(newData);
+            setData(newData);
+        } else {
+            setData(movies);
+        }
     }, [searchString]);
     //NOTE:
     /* const newData = data.filter((movie) =>
