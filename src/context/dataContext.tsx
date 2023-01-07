@@ -3,6 +3,8 @@ import {
     useState,
     useContext,
     ReactNode,
+    useMemo,
+    useEffect,
     useCallback,
 } from 'react';
 
@@ -24,6 +26,19 @@ const DataContext = createContext<Context | undefined>(undefined);
 
 const DataProvider = ({ children }: ContextProviderProps) => {
     const [data, setData] = useState(movies);
+    const [searchString, setSearchString] = useState('');
+
+    useEffect(() => {
+        const newData = movies.filter((movie) =>
+            movie.title.toLowerCase().includes(searchString.toLowerCase())
+        );
+
+        setData(newData);
+    }, [searchString]);
+    //NOTE:
+    /* const newData = data.filter((movie) =>
+            movie.title.toLowerCase().includes(searchString.toLowerCase())); */
+    //NOTE:
 
     const updateIsBookmarked = (id: number) => {
         const index = data.findIndex((movie) => movie.id === id);
@@ -35,13 +50,9 @@ const DataProvider = ({ children }: ContextProviderProps) => {
         setData(moviesCopy);
     };
 
-    const getSearchString = useCallback((searchString: string) => {
-        const newData = data.filter((movie) =>
-            movie.title.toLowerCase().includes(searchString.toLowerCase())
-        );
-
-        setData(newData);
-    }, []);
+    const getSearchString = (searchString: string) => {
+        setSearchString(searchString);
+    };
 
     const value = { data, updateIsBookmarked, getSearchString };
 

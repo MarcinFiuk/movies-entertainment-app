@@ -13,8 +13,6 @@ const Bookmarked = () => {
         (el) => el.category === 'TV Series' && el.isBookmarked && !el.isTrending
     );
 
-    console.log('s', recommendedTVSeries);
-
     return (
         //TODO: add content where there is nothing to display
         <>
