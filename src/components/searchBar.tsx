@@ -9,7 +9,7 @@ const SearchBar = () => {
     const { getSearchString } = useDataProvider();
     const [search, setSearch] = useDebounce('', 500);
 
-    const setSearchString = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const getInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
     };
 
@@ -26,7 +26,7 @@ const SearchBar = () => {
                 type='text'
                 placeholder='Search for movies or TV series'
                 name='search'
-                onChange={setSearchString}
+                onChange={getInputValue}
             />
         </Wrapper>
     );
