@@ -20,7 +20,7 @@ const Home = () => {
         />
     ) : (
         <>
-            <Trendy movies={trending} />
+            <Trendy movies={trending} title='Trending' />
             <Recommended movies={recommended} title='Recommended for you' />
         </>
     );

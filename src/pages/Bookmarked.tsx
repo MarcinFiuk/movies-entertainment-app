@@ -7,10 +7,10 @@ const Bookmarked = () => {
     const { data } = useDataProvider();
 
     const recommendedMovies = data.filter(
-        (el) => el.category === 'Movie' && el.isBookmarked && !el.isTrending
+        (el) => el.category === 'Movie' && el.isBookmarked
     );
     const recommendedTVSeries = data.filter(
-        (el) => el.category === 'TV Series' && el.isBookmarked && !el.isTrending
+        (el) => el.category === 'TV Series' && el.isBookmarked
     );
 
     return (

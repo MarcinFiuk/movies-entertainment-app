@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Carousel from 'nuka-carousel';
 
@@ -9,6 +8,7 @@ import { useDataProvider, Data } from './../context/dataContext';
 
 type TrendyProps = {
     movies: Data;
+    title: string;
 };
 
 type PictureTypes = {
@@ -23,7 +23,7 @@ const config = {
     prevButtonText: '<',
 };
 
-const Trendy = ({ movies }: TrendyProps) => {
+const Trendy = ({ movies, title }: TrendyProps) => {
     const { updateIsBookmarked } = useDataProvider();
     const isLarge = useMatchMedia('(min-width:1024px)');
 
@@ -31,18 +31,20 @@ const Trendy = ({ movies }: TrendyProps) => {
         if (!movie.thumbnail.trending) {
             return null;
         }
+
         const { id, category, year, title, rating, isBookmarked, thumbnail } =
             movie;
         const { trending } = thumbnail;
 
         return (
-            <ElementWrapper key={id} picture={trending!}>
+            <ElementWrapper key={id} picture={trending}>
                 <LikeButtonWrapper>
                     <LikeButton
                         isBookmarked={isBookmarked}
                         onClick={() => updateIsBookmarked(id)}
                     />
                 </LikeButtonWrapper>
+                <PictureSection picture={trending} />
                 <MovieDetailsWrapper>
                     <MovieDetails
                         size='big'
@@ -58,7 +60,7 @@ const Trendy = ({ movies }: TrendyProps) => {
 
     return (
         <GlobalWrapper>
-            <h2>Trending</h2>
+            <h2>{title}</h2>
             <CarouselWrapper>
                 <Carousel
                     wrapAround={true}
@@ -97,16 +99,13 @@ const ElementWrapper = styled.div`
     aspect-ratio: 12/7;
     border-radius: 0.5em;
     background-color: hsl(var(--semiDarkBlue));
-    background-image: ${({ picture }: PictureTypes) => `url(${picture.small})`};
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-right: 1rem;
 
+    margin-right: 1rem;
+    //NOTE: finish updating photos so they looks similar to recommended
     @media (min-width: 48rem) {
         aspect-ratio: 2/1;
-        background-image: ${({ picture }: PictureTypes) =>
-            `url(${picture.large})`};
+        /* background-image: ${({ picture }: PictureTypes) =>
+            `url(${picture.large})`}; */
         margin-right: 2.5rem;
     }
 `;
@@ -115,6 +114,21 @@ const LikeButtonWrapper = styled.div`
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
+`;
+
+const PictureSection = styled.div`
+    position: absolute;
+    inset: 0;
+    background-image: ${({ picture }: PictureTypes) => `url(${picture.small})`};
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    @media (min-width: 48rem) {
+        background-image: ${({ picture }: PictureTypes) =>
+            `url(${picture.large})`};
+        margin-right: 2.5rem;
+    }
 `;
 
 const MovieDetailsWrapper = styled.div`

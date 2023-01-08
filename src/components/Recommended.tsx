@@ -23,7 +23,9 @@ const Recommended = ({ movies, title }: RecommendedProps) => {
     const moviesList = movies.map((movie) => {
         const { id, isBookmarked, thumbnail, category, year, title, rating } =
             movie;
+
         const { regular } = thumbnail;
+
         return (
             <IndividualElementWrapper key={id}>
                 <LikeButtonWrapper>

@@ -77,6 +77,10 @@ const Wrapper = styled.div`
         height: 16px;
     }
 
+    /* ul > li:hover a {
+        color: red;
+    } */
+
     img {
         width: 24px;
         height: 24px;
@@ -135,6 +139,10 @@ const Wrapper = styled.div`
 const NavLinkStyled = styled(NavLink)`
     color: hsl(var(--greyishBlue));
     transition: color 0.2s ease-in-out;
+
+    &:hover {
+        color: hsl(var(--red));
+    }
 
     &.active {
         color: hsl(var(--pureWhite));
