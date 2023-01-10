@@ -28,6 +28,7 @@ const StyledButton = styled.button`
     mix-blend-mode: normal;
     color: hsl(var(--pureWhite));
     transition: 0.2s ease-in-out;
+    cursor: pointer;
 
     &:hover {
         background-color: hsl(var(--pureWhite));

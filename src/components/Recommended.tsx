@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import LikeButton from './LikeButton';
 import MovieDetails from './MovieDetails';
 import { useDataProvider, Data } from './../context/dataContext';
+import ImagePlayOverlay from './ImagePlayOverlay';
 
 type RecommendedProps = {
     movies: Data;
-    title: string;
+    title: string | React.ReactElement;
 };
 
 type PictureTypes = {
@@ -27,14 +28,16 @@ const Recommended = ({ movies, title }: RecommendedProps) => {
         const { regular } = thumbnail;
 
         return (
-            <IndividualElementWrapper key={id}>
+            <ElementWrapper key={id}>
                 <LikeButtonWrapper>
                     <LikeButton
                         isBookmarked={isBookmarked}
                         onClick={() => updateIsBookmarked(id)}
                     />
                 </LikeButtonWrapper>
-                <PictureSection picture={regular} />
+                <PictureSection picture={regular}>
+                    <ImagePlayOverlay />
+                </PictureSection>
                 <MovieDetails
                     size='small'
                     category={category}
@@ -42,7 +45,7 @@ const Recommended = ({ movies, title }: RecommendedProps) => {
                     title={title}
                     rating={rating}
                 />
-            </IndividualElementWrapper>
+            </ElementWrapper>
         );
     });
 
@@ -84,7 +87,7 @@ const MoviesWrapper = styled.div`
     }
 `;
 
-const IndividualElementWrapper = styled.div`
+const ElementWrapper = styled.div`
     position: relative;
 `;
 
@@ -118,5 +121,11 @@ const PictureSection = styled.div`
     @media (min-width: 64rem) {
         background-image: ${({ picture }: PictureTypes) =>
             `url(${picture.large})`};
+    }
+
+    &:hover {
+        div {
+            scale: 1;
+        }
     }
 `;

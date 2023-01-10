@@ -1,12 +1,4 @@
-import {
-    createContext,
-    useState,
-    useContext,
-    ReactNode,
-    useMemo,
-    useEffect,
-    useCallback,
-} from 'react';
+import { createContext, useState, useContext, ReactNode } from 'react';
 
 import movies from './../data.json';
 
@@ -29,17 +21,7 @@ const DataProvider = ({ children }: ContextProviderProps) => {
     const [data, setData] = useState(movies);
     const [searchString, setSearchString] = useState('');
 
-    // useEffect(() => {
-    //     if (searchString !== '') {
-    //         const newData = movies.filter((movie) =>
-    //             movie.title.toLowerCase().includes(searchString.toLowerCase())
-    //         );
-
-    //         setData(newData);
-    //     } else {
-    //         setData(movies);
-    //     }
-    // }, [searchString]);
+    console.log('log from context');
 
     const updateIsBookmarked = (id: number) => {
         const index = data.findIndex((movie) => movie.id === id);

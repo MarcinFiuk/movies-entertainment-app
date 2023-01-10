@@ -67,9 +67,11 @@ const Input = styled.input`
     border: none;
     border-bottom: 1px solid transparent;
 
-    &:focus {
+    &:focus,
+    &:hover {
         outline: none;
         border-color: hsl(var(--greyishBlue));
+        caret-color: hsl(var(--red));
     }
 
     @media (min-width: 48rem) {

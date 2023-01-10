@@ -5,6 +5,7 @@ import LikeButton from './LikeButton';
 import MovieDetails from './MovieDetails';
 import useMatchMedia from '../hooks/useMatchMedia';
 import { useDataProvider, Data } from './../context/dataContext';
+import ImagePlayOverlay from './ImagePlayOverlay';
 
 type TrendyProps = {
     movies: Data;
@@ -37,14 +38,16 @@ const Trendy = ({ movies, title }: TrendyProps) => {
         const { trending } = thumbnail;
 
         return (
-            <ElementWrapper key={id} picture={trending}>
+            <ElementWrapper key={id}>
+                <PictureSection picture={trending}>
+                    <ImagePlayOverlay />
+                </PictureSection>
                 <LikeButtonWrapper>
                     <LikeButton
                         isBookmarked={isBookmarked}
                         onClick={() => updateIsBookmarked(id)}
                     />
                 </LikeButtonWrapper>
-                <PictureSection picture={trending} />
                 <MovieDetailsWrapper>
                     <MovieDetails
                         size='big'
@@ -97,15 +100,10 @@ const CarouselWrapper = styled.div`
 const ElementWrapper = styled.div`
     position: relative;
     aspect-ratio: 12/7;
-    border-radius: 0.5em;
-    background-color: hsl(var(--semiDarkBlue));
-
     margin-right: 1rem;
-    //NOTE: finish updating photos so they looks similar to recommended
+
     @media (min-width: 48rem) {
         aspect-ratio: 2/1;
-        /* background-image: ${({ picture }: PictureTypes) =>
-            `url(${picture.large})`}; */
         margin-right: 2.5rem;
     }
 `;
@@ -114,20 +112,32 @@ const LikeButtonWrapper = styled.div`
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
+
+    @media (min-width: 48rem) {
+        top: 1rem;
+        right: 1.5rem;
+    }
 `;
 
 const PictureSection = styled.div`
     position: absolute;
     inset: 0;
+    background-color: hsl(var(--semiDarkBlue));
     background-image: ${({ picture }: PictureTypes) => `url(${picture.small})`};
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    border-radius: 0.5em;
 
     @media (min-width: 48rem) {
         background-image: ${({ picture }: PictureTypes) =>
             `url(${picture.large})`};
-        margin-right: 2.5rem;
+    }
+
+    &:hover {
+        div {
+            scale: 1;
+        }
     }
 `;
 
