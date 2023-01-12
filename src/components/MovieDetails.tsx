@@ -86,7 +86,6 @@ const Dot = styled.span`
 
 const Title = styled.p`
     font-weight: var(--fontWeight-500);
-    line-height: 19px;
 
     ${({ size }: SizeProps) =>
         size === 'big' &&
