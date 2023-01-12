@@ -22,6 +22,8 @@ type PictureTypes = {
 const config = {
     nextButtonText: '>',
     prevButtonText: '<',
+    nextButtonClassName: 'next',
+    prevButtonClassName: 'prev',
 };
 
 const Trendy = ({ movies, title }: TrendyProps) => {
@@ -94,6 +96,21 @@ const CarouselWrapper = styled.div`
 
     @media (min-width: 48rem) {
         margin-top: 1.5rem;
+    }
+
+    button.next,
+    button.prev {
+        height: 46px;
+        width: 35px;
+        font-size: 1rem;
+        border-bottom-right-radius: 0.25em;
+        border-top-right-radius: 0.25em;
+
+        @media (min-width: 48rem) {
+            height: 100px;
+            width: 45px;
+            font-size: 2rem;
+        }
     }
 `;
 
