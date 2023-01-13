@@ -4,7 +4,7 @@ import Recommended from '../components/Recommended';
 import { useDataProvider } from './../context/dataContext';
 
 const Bookmarked = () => {
-    const { data } = useDataProvider();
+    const { data, search } = useDataProvider();
 
     const recommendedMovies = data.filter(
         (el) => el.category === 'Movie' && el.isBookmarked
@@ -13,25 +13,42 @@ const Bookmarked = () => {
         (el) => el.category === 'TV Series' && el.isBookmarked
     );
 
+    const searchedMovies = recommendedMovies.filter((movie) =>
+        movie.title.toLowerCase().includes(search.toLowerCase())
+    );
+
+    const searchedTVSeries = recommendedTVSeries.filter((movie) =>
+        movie.title.toLowerCase().includes(search.toLowerCase())
+    );
+
+    const moviesToDisplay = search ? searchedMovies : recommendedMovies;
+    const tvSeriesToDisplay = search ? searchedTVSeries : recommendedTVSeries;
+
     return (
-        //TODO: add content where there is nothing to display
         <>
-            {recommendedMovies.length ? (
+            {moviesToDisplay.length ? (
                 <Recommended
-                    movies={recommendedMovies}
+                    movies={moviesToDisplay}
                     title='Bookmarked Movies'
                 />
             ) : null}
-            {recommendedTVSeries.length ? (
+            {tvSeriesToDisplay.length ? (
                 <Recommended
-                    movies={recommendedTVSeries}
+                    movies={tvSeriesToDisplay}
                     title='Bookmarked TV Series'
                 />
             ) : null}
 
-            {!recommendedMovies.length && !recommendedTVSeries.length ? (
+            {!moviesToDisplay.length && !tvSeriesToDisplay.length ? (
                 <GlobalWrapper>
-                    <h2>Any element was bookmarked</h2>
+                    {search ? (
+                        <h2>
+                            Sorry, we couldn't find any results for{' '}
+                            <strong>{search}</strong>
+                        </h2>
+                    ) : (
+                        <h2>No element was bookmarked</h2>
+                    )}
                 </GlobalWrapper>
             ) : null}
         </>

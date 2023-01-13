@@ -1,12 +1,12 @@
 export const retrieveStringFromParams = (pathname: string) => {
-    let string: string = '';
+    let obj = { category: '', title: '' };
 
     if (pathname === '/movies') {
-        string = 'Movie';
+        obj = { category: 'Movie', title: 'Movies' };
     }
     if (pathname === '/series') {
-        string = 'TV Series';
+        obj = { category: 'TV Series', title: 'TV Series' };
     }
 
-    return string;
+    return obj;
 };

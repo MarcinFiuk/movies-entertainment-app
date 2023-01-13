@@ -29,6 +29,7 @@ const config = {
 const Trendy = ({ movies, title }: TrendyProps) => {
     const { updateIsBookmarked } = useDataProvider();
     const isLarge = useMatchMedia('(min-width:1024px)');
+    const isMaxWidth = useMatchMedia('(min-width:1440px)');
 
     const moviesList = movies.map((movie) => {
         if (!movie.thumbnail.trending) {
@@ -64,7 +65,7 @@ const Trendy = ({ movies, title }: TrendyProps) => {
     });
 
     return (
-        <GlobalWrapper>
+        <GlobalWrapper a={isMaxWidth}>
             <h2>{title}</h2>
             <CarouselWrapper>
                 <Carousel
@@ -83,7 +84,8 @@ const Trendy = ({ movies, title }: TrendyProps) => {
 export default Trendy;
 
 const GlobalWrapper = styled.section`
-    margin-right: calc(var(--body-inline-padding) * -1);
+    margin-right: ${({ a }: { a: boolean }) =>
+        a ? '0' : 'calc(var(--body-inline-padding) * -1)'};
     margin-top: 1.5rem;
 
     @media (min-width: 48rem) {

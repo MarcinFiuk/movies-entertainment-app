@@ -29,15 +29,15 @@ const Recommended = ({ movies, title }: RecommendedProps) => {
 
         return (
             <ElementWrapper key={id}>
+                <PictureSection picture={regular}>
+                    <ImagePlayOverlay />
+                </PictureSection>
                 <LikeButtonWrapper>
                     <LikeButton
                         isBookmarked={isBookmarked}
                         onClick={() => updateIsBookmarked(id)}
                     />
                 </LikeButtonWrapper>
-                <PictureSection picture={regular}>
-                    <ImagePlayOverlay />
-                </PictureSection>
                 <MovieDetails
                     size='small'
                     category={category}
