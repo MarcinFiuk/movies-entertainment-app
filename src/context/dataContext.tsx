@@ -1,4 +1,11 @@
-import { createContext, useState, useContext, ReactNode } from 'react';
+import {
+    createContext,
+    useState,
+    useContext,
+    ReactNode,
+    useMemo,
+    useCallback,
+} from 'react';
 
 import movies from './../data.json';
 
@@ -23,29 +30,36 @@ const DataProvider = ({ children }: ContextProviderProps) => {
 
     console.log('log from context');
 
-    const updateIsBookmarked = (id: number) => {
-        const index = data.findIndex((movie) => movie.id === id);
-        const moviesCopy = [...data];
-        moviesCopy[index] = {
-            ...moviesCopy[index],
-            isBookmarked: !moviesCopy[index].isBookmarked,
-        };
-        setData(moviesCopy);
-    };
+    const updateIsBookmarked = useCallback(
+        (id: number) => {
+            const index = data.findIndex((movie) => movie.id === id);
+            const moviesCopy = [...data];
+            moviesCopy[index] = {
+                ...moviesCopy[index],
+                isBookmarked: !moviesCopy[index].isBookmarked,
+            };
+            setData(moviesCopy);
+        },
+        [data]
+    );
 
-    const getSearchString = (searchString: string) => {
+    const getSearchString = useCallback((searchString: string) => {
         setSearchString(searchString);
-    };
+    }, []);
 
-    const value = {
-        data,
-        updateIsBookmarked,
-        getSearchString,
-        search: searchString,
-    };
+    const memoizedValue = useMemo(() => {
+        return {
+            data,
+            updateIsBookmarked,
+            getSearchString,
+            search: searchString,
+        };
+    }, [data, updateIsBookmarked, getSearchString, searchString]);
 
     return (
-        <DataContext.Provider value={value}>{children}</DataContext.Provider>
+        <DataContext.Provider value={memoizedValue}>
+            {children}
+        </DataContext.Provider>
     );
 };
 
