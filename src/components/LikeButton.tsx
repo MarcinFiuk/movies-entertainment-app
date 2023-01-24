@@ -10,7 +10,11 @@ type LikeButtonProps = ComponentPropsWithoutRef<'button'> & {
 
 const LikeButton = ({ isBookmarked, onClick }: LikeButtonProps) => {
     return (
-        <StyledButton onClick={onClick}>
+        <StyledButton
+            onClick={onClick}
+            aria-pressed={isBookmarked}
+            aria-label='Like'
+        >
             {isBookmarked ? <BookmarkFull /> : <BookmarkEmpty />}
         </StyledButton>
     );
