@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { NavLink, Link } from 'react-router-dom';
+
+import IconLink from './IconLink';
 
 import { ReactComponent as Logo } from './../assets/logo.svg';
 import { ReactComponent as Home } from './../assets/icon-nav-home.svg';
@@ -13,31 +14,41 @@ const Header = () => {
         <header>
             <Wrapper>
                 <h1>
-                    <Link to='/'>
-                        <Logo />
-                    </Link>
+                    <IconLink Icon={Logo} to='/' title='go to homepage' />
                 </h1>
                 <nav>
                     <ul>
                         <li>
-                            <NavLinkStyled to='/'>
-                                <Home />
-                            </NavLinkStyled>
+                            <IconLink
+                                Icon={Home}
+                                to='/'
+                                title='go to homepage'
+                                type='navLink'
+                            />
                         </li>
                         <li>
-                            <NavLinkStyled to='/movies'>
-                                <Movies />
-                            </NavLinkStyled>
+                            <IconLink
+                                Icon={Movies}
+                                to='/movies'
+                                title='go to movies page'
+                                type='navLink'
+                            />{' '}
                         </li>
                         <li>
-                            <NavLinkStyled to='/series'>
-                                <TvSeries />
-                            </NavLinkStyled>
+                            <IconLink
+                                Icon={TvSeries}
+                                to='/series'
+                                title='go to TV series page'
+                                type='navLink'
+                            />
                         </li>
                         <li>
-                            <NavLinkStyled to='/bookmarked'>
-                                <Bookmark />
-                            </NavLinkStyled>
+                            <IconLink
+                                Icon={Bookmark}
+                                to='/bookmarked'
+                                title='go to bookmarked page'
+                                type='navLink'
+                            />
                         </li>
                     </ul>
                 </nav>
@@ -77,15 +88,24 @@ const Wrapper = styled.div`
         height: 16px;
     }
 
-    /* ul > li:hover a {
-        color: red;
-    } */
-
     img {
         width: 24px;
         height: 24px;
         border: 1px solid hsl(var(--pureWhite));
         border-radius: 100%;
+    }
+
+    a {
+        color: hsl(var(--greyishBlue));
+        transition: color 0.2s ease-in-out;
+
+        &:hover {
+            color: hsl(var(--red));
+        }
+
+        &.active {
+            color: hsl(var(--pureWhite));
+        }
     }
 
     @media (min-width: 48rem) {
@@ -133,18 +153,5 @@ const Wrapper = styled.div`
             height: 40px;
             margin-top: auto;
         }
-    }
-`;
-
-const NavLinkStyled = styled(NavLink)`
-    color: hsl(var(--greyishBlue));
-    transition: color 0.2s ease-in-out;
-
-    &:hover {
-        color: hsl(var(--red));
-    }
-
-    &.active {
-        color: hsl(var(--pureWhite));
     }
 `;
