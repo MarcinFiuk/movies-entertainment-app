@@ -26,7 +26,7 @@ const Wrapper = styled.div`
     );
     scale: 0;
 
-    & > button {
+    button {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -39,6 +39,10 @@ const Wrapper = styled.div`
         transition: scale 0.4s ease-out;
         color: hsl(var(--pureWhite));
         cursor: pointer;
+
+        &:focus {
+            scale: 1;
+        }
     }
 
     span {
@@ -48,7 +52,7 @@ const Wrapper = styled.div`
     }
 
     &:hover {
-        & > button {
+        button {
             scale: 1;
         }
     }

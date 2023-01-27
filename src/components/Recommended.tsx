@@ -113,6 +113,14 @@ const PictureSection = styled.div`
     background-size: cover;
     margin-bottom: 0.5rem;
 
+    &:hover > div {
+        scale: 1;
+    }
+
+    &:has(button:focus) > div {
+        scale: 1;
+    }
+
     @media (min-width: 48rem) {
         background-image: ${({ picture }: PictureTypes) =>
             `url(${picture.medium})`};
@@ -121,11 +129,5 @@ const PictureSection = styled.div`
     @media (min-width: 64rem) {
         background-image: ${({ picture }: PictureTypes) =>
             `url(${picture.large})`};
-    }
-
-    &:hover {
-        div {
-            scale: 1;
-        }
     }
 `;

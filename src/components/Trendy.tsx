@@ -153,10 +153,12 @@ const PictureSection = styled.div`
             `url(${picture.large})`};
     }
 
-    &:hover {
-        div {
-            scale: 1;
-        }
+    &:hover > div {
+        scale: 1;
+    }
+
+    &:has(button:focus) > div {
+        scale: 1;
     }
 `;
 
