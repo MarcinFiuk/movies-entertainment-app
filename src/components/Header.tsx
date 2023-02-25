@@ -13,9 +13,10 @@ const Header = () => {
     return (
         <header>
             <Wrapper>
-                <h1>
+                <IconWrapper>
                     <IconLink Icon={Logo} to='/' title='go to homepage' />
-                </h1>
+                </IconWrapper>
+                <VisuallyHidden>Movies App</VisuallyHidden>
                 <nav>
                     <ul>
                         <li>
@@ -32,7 +33,7 @@ const Header = () => {
                                 to='/movies'
                                 title='go to movies page'
                                 type='navLink'
-                            />{' '}
+                            />
                         </li>
                         <li>
                             <IconLink
@@ -68,11 +69,6 @@ const Wrapper = styled.div`
     margin-inline: calc(-1 * var(--body-inline-padding));
     padding-block: 1rem;
     padding-inline: 16px;
-
-    h1 {
-        width: 25px;
-        height: 20px;
-    }
 
     nav > ul {
         display: flex;
@@ -154,4 +150,27 @@ const Wrapper = styled.div`
             margin-top: auto;
         }
     }
+`;
+
+const IconWrapper = styled.div`
+    width: 25px;
+    height: 20px;
+
+    @media (min-width: 48rem) {
+        width: 32px;
+        height: 25px;
+    }
+`;
+
+const VisuallyHidden = styled.h1`
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
 `;
