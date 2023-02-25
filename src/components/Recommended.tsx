@@ -10,13 +10,13 @@ type RecommendedProps = {
     title: string | React.ReactElement;
 };
 
-type PictureTypes = {
-    picture: {
-        small: string;
-        medium: string;
-        large: string;
-    };
-};
+// type PictureTypes = {
+//     picture: {
+//         small: string;
+//         medium: string;
+//         large: string;
+//     };
+// };
 
 const Recommended = ({ movies, title }: RecommendedProps) => {
     const { updateIsBookmarked } = useDataProvider();
@@ -26,33 +26,57 @@ const Recommended = ({ movies, title }: RecommendedProps) => {
             movie;
 
         const { regular } = thumbnail;
-
+        /**
+ li
+    div
+        div>likeButton
+        div>a>img
+        div>description
+ */
         return (
-            <ElementWrapper key={id}>
-                <PictureSection picture={regular}>
-                    <ImagePlayOverlay />
-                </PictureSection>
-                <LikeButtonWrapper>
-                    <LikeButton
-                        isBookmarked={isBookmarked}
-                        onClick={() => updateIsBookmarked(id)}
+            <li>
+                <ElementWrapper key={id}>
+                    <PictureSection>
+                        <picture>
+                            <source
+                                srcSet={regular.large}
+                                media='(min-width: 64rem)'
+                            />
+                            <source
+                                srcSet={regular.medium}
+                                media='(min-width: 48rem)'
+                            />
+                            <img
+                                src={regular.small}
+                                alt={`"${title}" miniature`}
+                            />
+                        </picture>
+                        <ImagePlayOverlay />
+                    </PictureSection>
+                    <LikeButtonWrapper>
+                        <LikeButton
+                            isBookmarked={isBookmarked}
+                            onClick={() => updateIsBookmarked(id)}
+                        />
+                    </LikeButtonWrapper>
+                    <MovieDetails
+                        size='small'
+                        category={category}
+                        year={year}
+                        title={title}
+                        rating={rating}
                     />
-                </LikeButtonWrapper>
-                <MovieDetails
-                    size='small'
-                    category={category}
-                    year={year}
-                    title={title}
-                    rating={rating}
-                />
-            </ElementWrapper>
+                </ElementWrapper>
+            </li>
         );
     });
 
     return (
         <GlobalWrapper>
             <h2>{title}</h2>
-            <MoviesWrapper>{moviesList}</MoviesWrapper>
+            <MoviesWrapper>
+                <Ul>{moviesList}</Ul>
+            </MoviesWrapper>
         </GlobalWrapper>
     );
 };
@@ -68,10 +92,19 @@ const GlobalWrapper = styled.section`
 `;
 
 const MoviesWrapper = styled.div`
+    margin-top: 1.5rem;
+
+    @media (min-width: 64rem) {
+        margin-top: 2rem;
+    }
+`;
+
+const Ul = styled.ul`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-    margin-top: 1.5rem;
+    padding-left: 0;
+    list-style: none;
 
     @media (min-width: 48rem) {
         grid-template-columns: repeat(3, 1fr);
@@ -103,15 +136,18 @@ const LikeButtonWrapper = styled.div`
 `;
 
 const PictureSection = styled.div`
-    width: 100%;
+    position: relative;
     aspect-ratio: 16/11;
     border-radius: 0.5em;
     background-color: hsl(var(--semiDarkBlue));
-    background-image: ${({ picture }: PictureTypes) => `url(${picture.small})`};
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     margin-bottom: 0.5rem;
+    overflow: hidden;
+
+    picture,
+    img {
+        width: 100%;
+        height: 100%;
+    }
 
     &:hover > div {
         scale: 1;
@@ -119,15 +155,5 @@ const PictureSection = styled.div`
 
     &:has(button:focus) > div {
         scale: 1;
-    }
-
-    @media (min-width: 48rem) {
-        background-image: ${({ picture }: PictureTypes) =>
-            `url(${picture.medium})`};
-    }
-
-    @media (min-width: 64rem) {
-        background-image: ${({ picture }: PictureTypes) =>
-            `url(${picture.large})`};
     }
 `;

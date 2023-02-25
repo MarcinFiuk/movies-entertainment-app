@@ -15,6 +15,8 @@ const ImagePlayOverlay = () => {
 export default ImagePlayOverlay;
 
 const Wrapper = styled.div`
+    position: absolute;
+    inset: 0;
     display: grid;
     place-items: center;
     width: 100%;
@@ -24,6 +26,7 @@ const Wrapper = styled.div`
         rgba(0, 0, 0, 0.5),
         rgba(0, 0, 0, 0.5)
     );
+    border-radius: 0.5em;
     scale: 0;
 
     button {
