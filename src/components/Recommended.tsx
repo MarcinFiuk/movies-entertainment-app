@@ -10,14 +10,6 @@ type RecommendedProps = {
     title: string | React.ReactElement;
 };
 
-// type PictureTypes = {
-//     picture: {
-//         small: string;
-//         medium: string;
-//         large: string;
-//     };
-// };
-
 const Recommended = ({ movies, title }: RecommendedProps) => {
     const { updateIsBookmarked } = useDataProvider();
 
@@ -26,13 +18,7 @@ const Recommended = ({ movies, title }: RecommendedProps) => {
             movie;
 
         const { regular } = thumbnail;
-        /**
- li
-    div
-        div>likeButton
-        div>a>img
-        div>description
- */
+
         return (
             <li>
                 <ElementWrapper key={id}>
@@ -49,6 +35,7 @@ const Recommended = ({ movies, title }: RecommendedProps) => {
                             <img
                                 src={regular.small}
                                 alt={`"${title}" miniature`}
+                                loading='lazy'
                             />
                         </picture>
                         <ImagePlayOverlay />
