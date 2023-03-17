@@ -42,7 +42,17 @@ const Trendy = ({ movies, title }: TrendyProps) => {
 
         return (
             <ElementWrapper key={id}>
-                <PictureSection picture={trending}>
+                <PictureSection>
+                    <picture>
+                        <source
+                            srcSet={trending.large}
+                            media='(min-width: 64rem)'
+                        />
+                        <img
+                            src={trending.small}
+                            alt={`"${title}" miniature`}
+                        />
+                    </picture>
                     <ImagePlayOverlay />
                 </PictureSection>
                 <LikeButtonWrapper>
@@ -142,15 +152,13 @@ const PictureSection = styled.div`
     position: absolute;
     inset: 0;
     background-color: hsl(var(--semiDarkBlue));
-    background-image: ${({ picture }: PictureTypes) => `url(${picture.small})`};
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     border-radius: 0.5em;
+    overflow: hidden;
 
-    @media (min-width: 48rem) {
-        background-image: ${({ picture }: PictureTypes) =>
-            `url(${picture.large})`};
+    picture,
+    img {
+        width: 100%;
+        height: 100%;
     }
 
     &:hover > div {
