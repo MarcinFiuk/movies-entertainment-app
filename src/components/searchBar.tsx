@@ -14,7 +14,6 @@ const SearchBar = () => {
     const [value, search, setSearch] = useDebounce('', 500);
     const { pathname } = useLocation();
     const { placeholder } = retrieveStringFromParams(pathname);
-    console.log(pathname);
 
     const getInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
@@ -75,30 +74,30 @@ const Wrapper = styled.div`
 `;
 
 const IconsWrapper = styled.span`
-    width: 25px;
     height: 25px;
     padding: 0;
+    width: 25px;
 
     @media (min-width: 48rem) {
-        width: 32px;
         height: 32px;
+        width: 32px;
     }
 `;
 
 const Input = styled.input`
-    width: 100%;
+    background-color: transparent;
+    border-bottom: 1px solid transparent;
+    border: none;
+    color: hsl(var(--pureWhite));
     font-size: var(--fs-16);
     line-height: 1.25rem;
-    background-color: transparent;
-    color: hsl(var(--pureWhite));
-    border: none;
-    border-bottom: 1px solid transparent;
+    width: 100%;
 
     &:focus,
     &:hover {
-        outline: none;
         border-color: hsl(var(--greyishBlue));
         caret-color: hsl(var(--red));
+        outline: none;
     }
 
     @media (min-width: 48rem) {

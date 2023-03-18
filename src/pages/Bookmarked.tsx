@@ -63,4 +63,16 @@ const GlobalWrapper = styled.section`
     @media (min-width: 48rem) {
         margin-top: 2.5rem;
     }
+
+    h2 {
+        font-weight: var(--fontWeight-300);
+        font-size: var(--fs-20);
+        line-height: 1.25;
+        letter-spacing: -0.3px;
+
+        @media (min-width: 48rem) {
+            font-size: var(--fs-32);
+            letter-spacing: -0.5px;
+        }
+    }
 `;

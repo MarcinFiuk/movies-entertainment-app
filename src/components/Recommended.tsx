@@ -20,7 +20,7 @@ const Recommended = ({ movies, title }: RecommendedProps) => {
         const { regular } = thumbnail;
 
         return (
-            <li>
+            <li key={id}>
                 <ElementWrapper key={id}>
                     <PictureSection>
                         <picture>
@@ -76,6 +76,18 @@ const GlobalWrapper = styled.section`
     @media (min-width: 48rem) {
         margin-top: 2.5rem;
     }
+
+    h2 {
+        font-weight: var(--fontWeight-300);
+        font-size: var(--fs-20);
+        line-height: 1.25;
+        letter-spacing: -0.3px;
+
+        @media (min-width: 48rem) {
+            font-size: var(--fs-32);
+            letter-spacing: -0.5px;
+        }
+    }
 `;
 
 const MoviesWrapper = styled.div`
@@ -88,22 +100,22 @@ const MoviesWrapper = styled.div`
 
 const Ul = styled.ul`
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-    padding-left: 0;
+    grid-template-columns: repeat(2, 1fr);
     list-style: none;
+    padding-left: 0;
 
     @media (min-width: 48rem) {
+        column-gap: 1.875rem;
         grid-template-columns: repeat(3, 1fr);
         row-gap: 1.5rem;
-        column-gap: 1.875rem;
     }
 
     @media (min-width: 64rem) {
-        grid-template-columns: repeat(4, 1fr);
-        row-gap: 2rem;
         column-gap: 2.5rem;
+        grid-template-columns: repeat(4, 1fr);
         margin-top: 2rem;
+        row-gap: 2rem;
     }
 `;
 
@@ -113,27 +125,27 @@ const ElementWrapper = styled.div`
 
 const LikeButtonWrapper = styled.div`
     position: absolute;
-    top: 0.5rem;
     right: 0.5rem;
+    top: 0.5rem;
 
     @media (min-width: 48rem) {
-        top: 1rem;
         right: 1rem;
+        top: 1rem;
     }
 `;
 
 const PictureSection = styled.div`
-    position: relative;
     aspect-ratio: 16/11;
-    border-radius: 0.5em;
     background-color: hsl(var(--semiDarkBlue));
+    border-radius: 0.5em;
     margin-bottom: 0.5rem;
     overflow: hidden;
+    position: relative;
 
     picture,
     img {
-        width: 100%;
         height: 100%;
+        width: 100%;
     }
 
     &:hover > div {

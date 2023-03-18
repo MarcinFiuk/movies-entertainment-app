@@ -15,33 +15,33 @@ const ImagePlayOverlay = () => {
 export default ImagePlayOverlay;
 
 const Wrapper = styled.div`
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    width: 100%;
-    height: 100%;
     background-image: linear-gradient(
         0deg,
         rgba(0, 0, 0, 0.5),
         rgba(0, 0, 0, 0.5)
     );
     border-radius: 0.5em;
+    display: grid;
+    height: 100%;
+    inset: 0;
+    place-items: center;
+    position: absolute;
     scale: 0;
+    width: 100%;
 
     button {
-        display: flex;
-        justify-content: center;
         align-items: center;
-        gap: 1.25rem;
         background-color: hsl(var(--pureWhite) / 0.25);
-        padding: 9px;
-        padding-right: 1.5rem;
         border-radius: 500px;
-        scale: 0;
-        transition: scale 0.4s ease-out;
         color: hsl(var(--pureWhite));
         cursor: pointer;
+        display: flex;
+        gap: 1.25rem;
+        justify-content: center;
+        padding-right: 1.5rem;
+        padding: 9px;
+        scale: 0;
+        transition: scale 0.4s ease-out;
 
         &:focus {
             scale: 1;
@@ -49,8 +49,8 @@ const Wrapper = styled.div`
     }
 
     span {
-        font-weight: var(--fontWeight-500);
         font-size: var(--fs-18);
+        font-weight: var(--fontWeight-500);
         line-height: 1.3;
     }
 
@@ -58,5 +58,9 @@ const Wrapper = styled.div`
         button {
             scale: 1;
         }
+    }
+
+    @media (not(hover)) {
+        display: none;
     }
 `;

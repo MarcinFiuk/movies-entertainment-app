@@ -101,6 +101,18 @@ const GlobalWrapper = styled.section`
     @media (min-width: 48rem) {
         margin-top: 2rem;
     }
+
+    h2 {
+        font-weight: var(--fontWeight-300);
+        font-size: var(--fs-20);
+        line-height: 1.25;
+        letter-spacing: -0.3px;
+
+        @media (min-width: 48rem) {
+            font-size: var(--fs-32);
+            letter-spacing: -0.5px;
+        }
+    }
 `;
 
 const CarouselWrapper = styled.div`
@@ -112,24 +124,24 @@ const CarouselWrapper = styled.div`
 
     button.next,
     button.prev {
-        height: 46px;
-        width: 35px;
-        font-size: 1rem;
         border-bottom-right-radius: 0.25em;
         border-top-right-radius: 0.25em;
+        font-size: 1rem;
+        height: 46px;
+        width: 35px;
 
         @media (min-width: 48rem) {
+            font-size: 2rem;
             height: 100px;
             width: 45px;
-            font-size: 2rem;
         }
     }
 `;
 
 const ElementWrapper = styled.div`
-    position: relative;
     aspect-ratio: 12/7;
     margin-right: 1rem;
+    position: relative;
 
     @media (min-width: 48rem) {
         aspect-ratio: 2/1;
@@ -139,26 +151,26 @@ const ElementWrapper = styled.div`
 
 const LikeButtonWrapper = styled.div`
     position: absolute;
-    top: 0.5rem;
     right: 0.5rem;
+    top: 0.5rem;
 
     @media (min-width: 48rem) {
-        top: 1rem;
         right: 1.5rem;
+        top: 1rem;
     }
 `;
 
 const PictureSection = styled.div`
-    position: absolute;
-    inset: 0;
     background-color: hsl(var(--semiDarkBlue));
     border-radius: 0.5em;
+    inset: 0;
     overflow: hidden;
+    position: absolute;
 
     picture,
     img {
-        width: 100%;
         height: 100%;
+        width: 100%;
     }
 
     &:hover > div {
@@ -171,7 +183,7 @@ const PictureSection = styled.div`
 `;
 
 const MovieDetailsWrapper = styled.div`
-    position: absolute;
-    left: 1rem;
     bottom: 1rem;
+    left: 1rem;
+    position: absolute;
 `;

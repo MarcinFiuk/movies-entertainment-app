@@ -17,14 +17,26 @@ export default NotFound;
 
 const Wrapper = styled.div`
     display: grid;
-    place-items: center;
     gap: 1rem;
     margin-top: 2rem;
+    place-items: center;
+
+    h2 {
+        font-weight: var(--fontWeight-300);
+        font-size: var(--fs-20);
+        line-height: 1.25;
+        letter-spacing: -0.3px;
+
+        @media (min-width: 48rem) {
+            font-size: var(--fs-32);
+            letter-spacing: -0.5px;
+        }
+    }
 
     p {
+        font-size: var(--fs-16);
         font-weight: var(--fontWeight-500);
         line-height: 19px;
-        font-size: var(--fs-16);
         line-height: 19px;
 
         @media (min-width: 48rem) {

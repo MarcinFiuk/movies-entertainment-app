@@ -20,18 +20,17 @@ export default RootLayout;
 
 const Wrapper = styled.div`
     display: grid;
+    gap: 1.5rem;
     grid-template-columns: auto;
     grid-template-rows: auto 1fr;
-    gap: 1.5rem;
 
     @media (min-width: 48rem) {
-        grid-template-rows: auto 1fr;
         gap: 2rem;
     }
 
     @media (min-width: 64rem) {
+        gap: 32px;
         grid-template-columns: 96px 1fr;
         grid-template-rows: auto;
-        gap: 32px;
     }
 `;

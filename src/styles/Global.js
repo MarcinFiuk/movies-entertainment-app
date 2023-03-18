@@ -38,24 +38,12 @@ body{
 
     @media(min-width: 64rem){
         --body-inline-padding:32px
-}
+    };
 }
 
 button{
     background-color:transparent;
     border:none;
-}
-
-h2{
-    font-weight: var(--fontWeight-300);
-    font-size: var(--fs-20);
-    line-height:1.25;
-    letter-spacing: -0.3px;
-
-    @media (min-width: 48rem) {
-        font-size: var(--fs-32);
-        letter-spacing: -0.5px;
-    }
 }
 `;
 

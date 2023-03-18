@@ -2,8 +2,9 @@ import { useLocation } from 'react-router-dom';
 
 import Recommended from '../components/Recommended';
 import { useDataProvider } from './../context/dataContext';
+
 import { retrieveStringFromParams } from './../helpers/routesHelpers';
-import { createHeadingForSearched } from './../helpers/pagesHelpers';
+import { createHeadingForSearched } from '../helpers/pagesHelpers';
 
 const Category = () => {
     const { data, search } = useDataProvider();

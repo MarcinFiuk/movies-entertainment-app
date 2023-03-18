@@ -39,15 +39,15 @@ const MovieDetails = ({
 export default MovieDetails;
 
 const DetailsWrapper = styled.div`
-    display: flex;
     align-items: center;
+    display: flex;
     gap: 8px;
     margin-bottom: 4px;
 
     p {
+        color: hsl(var(--pureWhite) / 0.75);
         font-size: var(--fs-12);
         font-weight: var(--fontWeight-300);
-        color: hsl(var(--pureWhite) / 0.75);
     }
 
     ${({ size }: SizeProps) =>
@@ -77,11 +77,11 @@ const DetailsWrapper = styled.div`
 `;
 
 const Dot = styled.span`
-    display: block;
-    width: 3px;
-    height: 3px;
     background-color: hsl(var(--pureWhite) / 0.5);
     border-radius: 100%;
+    display: block;
+    height: 3px;
+    width: 3px;
 `;
 
 const Title = styled.p`

@@ -28,8 +28,6 @@ const DataProvider = ({ children }: ContextProviderProps) => {
     const [data, setData] = useState(movies);
     const [searchString, setSearchString] = useState('');
 
-    console.log('log from context');
-
     const updateIsBookmarked = useCallback(
         (id: number) => {
             const index = data.findIndex((movie) => movie.id === id);
