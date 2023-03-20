@@ -19,7 +19,7 @@ Users should be able to:
 ### Links
 
 -   Solution URL: [GitHub](https://github.com/MarcinFiuk/movies-entertainment-app)
--   Live Site URL: [Vercel](https://movies-entertainment-app-marcinfiuk.vercel.app/bookmarked)
+-   Live Site URL: [Vercel](https://movies-entertainment-app-marcinfiuk.vercel.app)
 
 ## My process
 
